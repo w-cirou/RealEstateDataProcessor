@@ -1,0 +1,183 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Excel-Processor-App
+
+# Components to this application that aren't defined in this template:
+# - REST/HTTP API to expose the GetActiveHouse, GetSoldHouse, GetListingType, and GetAllHousesFromDate functions
+
+Globals:
+  Function:
+    Timeout: 20
+    MemorySize: 512
+
+    Tracing: Active
+    LoggingConfig:
+      LogFormat: JSON
+  Api:
+    TracingEnabled: true
+Resources:
+  ExcelEmailsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: wcirou-excel-emails
+      LifecycleConfiguration:
+        Rules:
+          - Id: DeleteAfter1Days
+            Status: Enabled
+            ExpirationInDays: 1
+
+  RealEstateDataTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: RealEstateDataTable
+      BillingMode: PAY_PER_REQUEST # On-Demand Capacity
+      AttributeDefinitions:
+        - AttributeName: ListingType
+          AttributeType: S
+        - AttributeName: MLS#
+          AttributeType: S
+        - AttributeName: Address
+          AttributeType: S
+      KeySchema:
+        - AttributeName: ListingType
+          KeyType: HASH
+        - AttributeName: MLS#
+          KeyType: RANGE
+      LocalSecondaryIndexes:
+        - IndexName: LSI
+          KeySchema:
+            - AttributeName: ListingType
+              KeyType: HASH
+            - AttributeName: Address
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+
+  InsertDataToDynamoDBFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: ExcelProcessor
+      Handler: dev.wcirou.InsertDataToDynamoDB::handleRequest
+      Runtime: java21
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - AmazonDynamoDBFullAccess
+        - AmazonS3FullAccess
+      Environment:
+        Variables:
+          TABLE_NAME: RealEstateDataTable
+          BUCKET_NAME: wcirou-excel-emails
+      Events:
+        S3Trigger:
+          Type: S3
+          Properties:
+            Bucket: !Ref ExcelEmailsBucket
+            Events: s3:ObjectCreated:*
+  GetActiveHouseFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: ExcelProcessor
+      Handler: dev.wcirou.GetActiveHouse::handleRequest
+      Runtime: java21
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - AmazonDynamoDBFullAccess
+      Environment:
+        Variables:
+          TABLE_NAME: RealEstateDataTable
+  GetSoldHouseFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: ExcelProcessor
+      Handler: dev.wcirou.GetSoldHouse::handleRequest
+      Runtime: java21
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - AmazonDynamoDBFullAccess
+      Environment:
+        Variables:
+          TABLE_NAME: RealEstateDataTable
+  GetListingTypeFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: ExcelProcessor
+      Handler: dev.wcirou.GetListingType::handleRequest
+      Runtime: java21
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - AmazonDynamoDBFullAccess
+      Environment:
+        Variables:
+          TABLE_NAME: RealEstateDataTable
+  GetAllHousesFromDateFunction:
+      Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+      Properties:
+        CodeUri: ExcelProcessor
+        Handler: dev.wcirou.GetAllHousesFromDate::handleRequest
+        Runtime: java21
+        Architectures:
+          - x86_64
+        MemorySize: 512
+        Policies:
+          - AWSLambdaBasicExecutionRole
+          - AmazonDynamoDBFullAccess
+        Environment:
+          Variables:
+            TABLE_NAME: RealEstateDataTable
+  WeeklyInvokeFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: ExcelProcessor
+      Handler: dev.wcirou.WeeklyInvoke::handleRequest
+      Runtime: java21
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - AmazonDynamoDBFullAccess
+        - AmazonSESFullAccess
+      Environment:
+        Variables:
+          TABLE_NAME: RealEstateDataTable
+      Events:
+        ScheduledEvent:
+          Type: Schedule
+          Properties:
+            Schedule: cron(0 5 ? * 1 *)
+  MonthlyInvokeFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: ExcelProcessor
+      Handler: dev.wcirou.MonthlyInvoke::handleRequest
+      Runtime: java21
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - AmazonDynamoDBFullAccess
+        - AmazonSESFullAccess
+      Environment:
+        Variables:
+          TABLE_NAME: RealEstateDataTable
+      Events:
+        ScheduledEvent:
+          Type: Schedule
+          Properties:
+            Schedule: cron(0 5 1 * ? *)
+
+

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="601fd739-b64a-4510-9c18-ca0ee372d039" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2kX5HfPunBU5GfJywNGRhKZCn2f" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.GetActiveHouse.executor": "Run",
+    "Application.GetAllHousesFromDate.executor": "Run",
+    "Application.InsertDataToDynamoDB.executor": "Run",
+    "Application.MonthlyInvoke.executor": "Run",
+    "Application.Utils.executor": "Run",
+    "Application.WeeklyInvoke.executor": "Run",
+    "JUnit.GetActiveHouseTest.getActiveHouseTest.executor": "Run",
+    "JUnit.GetActiveHouseTest.handle_request.executor": "Run",
+    "JUnit.GetAllHousesFromDateTest.getAllHousesFromDateTest.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/wyatt/OneDrive/Desktop/Portfolio Projects/Excel-Processor-App/ExcelProcessor/src/main",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\wyatt\OneDrive\Desktop\Portfolio Projects\Excel-Processor-App\ExcelProcessor\src\main" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.GetActiveHouseTest.getActiveHouseTest">
+    <configuration name="GetActiveHouse" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.wcirou.GetActiveHouse" />
+      <module name="Excel-Processor-App" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.wcirou.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MonthlyInvoke" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.wcirou.MonthlyInvoke" />
+      <module name="Excel-Processor-App" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.wcirou.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Utils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.wcirou.Utils" />
+      <module name="Excel-Processor-App" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.wcirou.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WeeklyInvoke" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.wcirou.WeeklyInvoke" />
+      <module name="Excel-Processor-App" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.wcirou.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GetActiveHouseTest.getActiveHouseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Excel-Processor-App" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.wcirou.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dev.wcirou" />
+      <option name="MAIN_CLASS_NAME" value="dev.wcirou.GetActiveHouseTest" />
+      <option name="METHOD_NAME" value="getActiveHouseTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.GetActiveHouseTest.getActiveHouseTest" />
+        <item itemvalue="Application.MonthlyInvoke" />
+        <item itemvalue="Application.WeeklyInvoke" />
+        <item itemvalue="Application.GetActiveHouse" />
+        <item itemvalue="Application.Utils" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="601fd739-b64a-4510-9c18-ca0ee372d039" name="Changes" comment="" />
+      <created>1723416995203</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1723416995203</updated>
+    </task>
+    <servers />
+  </component>
+</project>

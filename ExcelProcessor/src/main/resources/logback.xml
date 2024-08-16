@@ -1,0 +1,27 @@
+<configuration>
+
+    <!-- Define appenders and loggers here -->
+
+    <!-- Example: Console Appender -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root logger -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <!-- Logger for INFO level and higher -->
+    <logger name="ConvertImageType" level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <!-- Logger for ERROR level and higher -->
+    <logger name="ConvertImageType" level="ERROR">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+</configuration>
